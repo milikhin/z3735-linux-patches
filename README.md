@@ -1,17 +1,17 @@
 # baytrail-linux
-
+## About ##
 A set of patches, kernel configs and various bits of information required to build working Linux kernel for Baytrail tablets with RTL8723BS WiFi/BT and GSL1680 touchscreen
 
-# Links
+## Links ##
 
-## WiFi ##
+### WiFi ###
 [rtl8723bs](https://github.com/hadess/rtl8723bs)
 
-## BT ##
+### BT ###
 [rtl8723bs_bt](https://github.com/lwfinger/rtl8723bs_bt)
 
-## Touch ##
+### Touch ###
 [gslx680-acpi](https://github.com/onitake/gslx680-acpi)
 
-## Battery status ##
+### Battery status ###
 [axpd](https://github.com/Icenowy/axpd/)
