@@ -12,3 +12,6 @@ A set of patches, kernel configs and various bits of information required to bui
 
 ## Touch ##
 [gslx680-acpi](https://github.com/onitake/gslx680-acpi)
+
+## Battery status ##
+[axpd](https://github.com/Icenowy/axpd/)
