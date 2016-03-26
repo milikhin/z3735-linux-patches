@@ -8,7 +8,7 @@ A set of patches, kernel configs and various bits of information required to bui
 [rtl8723bs](https://github.com/hadess/rtl8723bs)
 
 ## BT ##
-[rtl8723_bs](https://github.com/lwfinger/rtl8723bs_bt)
+[rtl8723bs_bt](https://github.com/lwfinger/rtl8723bs_bt)
 
 ## Touch ##
 [gslx680-acpi](https://github.com/onitake/gslx680-acpi)
