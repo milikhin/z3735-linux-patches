@@ -24,3 +24,9 @@ A set of patches, kernel configs and various bits of information required to bui
 
 ### Battery status ###
 [axpd](https://github.com/Icenowy/axpd/)
+
+
+## Kernel ##
+
+Kernel width applied patches at [GoogleDrive](https://drive.google.com/folderview?id=0BzIRxogf-cVkLWdiMTRoenU5amM&usp=sharing)
+DKMS drivers: [Launchpad](https://launchpad.net/~russianneuromancer/+archive/ubuntu/drivers)
