@@ -3,13 +3,13 @@
 A set of patches, kernel configs and various bits of information required to build working Linux kernel for Baytrail tablets (z3735) with RTL8723BS WiFi/BT and GSL1680 touchscreen
 
 ## Patches ##
-* 4.X-only - kernel version-specific patches  
+* *4.X-only* - kernel version-specific patches  
    * ubuntu - Ubuntu packaging pathces
-* rtl8723bs - patches required by WiFi driver
-* rtl8723bs_bt - patches required by BT driver
-* undo - patch for 4.5+, that should be reverted to get WiFi/BT working
-* testing - audio/backlight patches, I don't know if theese actually needed
-* intel - three patches from [here](https://cgit.freedesktop.org/cgit/?url=~miku/drm-intel/commit/&h=rc6_test&id=7e6c3f36563d133cff5b700d9c36b12ac2a0c643), [here](https://cgit.freedesktop.org/~miku/drm-intel/commit/?h=rc6_test&id=b2f08adb19fcb18fea7cda9908fa52e2b9db5e7f), and [here](https://cgit.freedesktop.org/~miku/drm-intel/commit/?h=rc6_test&id=e564271291fa70265b53fa34c01cbb0ae6282e81)
+* *rtl8723bs* - patches required by WiFi driver
+* *rtl8723bs_bt* - patches required by BT driver
+* *undo* - patch for 4.5+, that should be reverted to get WiFi/BT working
+* *intel* - three patches from [here](https://cgit.freedesktop.org/cgit/?url=~miku/drm-intel/commit/&h=rc6_test&id=7e6c3f36563d133cff5b700d9c36b12ac2a0c643), [here](https://cgit.freedesktop.org/~miku/drm-intel/commit/?h=rc6_test&id=b2f08adb19fcb18fea7cda9908fa52e2b9db5e7f), and [here](https://cgit.freedesktop.org/~miku/drm-intel/commit/?h=rc6_test&id=e564271291fa70265b53fa34c01cbb0ae6282e81)
+* *testing* - audio/backlight patches, I don't know if theese actually needed
 
 ## Drivers ##
 
