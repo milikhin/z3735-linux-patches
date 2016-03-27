@@ -13,21 +13,15 @@ A set of patches, kernel configs and various bits of information required to bui
 
 ## Drivers ##
 
-### WiFi ###
-[rtl8723bs](https://github.com/hadess/rtl8723bs)
+### Bin ###
+PPA with drivers: [PPA@Launchpad](https://launchpad.net/~russianneuromancer/+archive/ubuntu/drivers)
 
-### BT ###
-[rtl8723bs_bt](https://github.com/lwfinger/rtl8723bs_bt)
-
-### Touch ###
-[gslx680-acpi](https://github.com/onitake/gslx680-acpi)
-
-### Battery status ###
-[axpd](https://github.com/Icenowy/axpd/)
-
+### Sources ###
+* Wi-Fi: [rtl8723bs](https://github.com/hadess/rtl8723bs)
+* BT: [rtl8723bs_bt](https://github.com/lwfinger/rtl8723bs_bt)
+* Touch: [gslx680-acpi](https://github.com/onitake/gslx680-acpi)
+* Battery status: [axpd](https://github.com/Icenowy/axpd/)
 
 ## Kernel ##
 
 Kernel with applied patches at [GoogleDrive](https://drive.google.com/folderview?id=0BzIRxogf-cVkLWdiMTRoenU5amM&usp=sharing)
-
-DKMS drivers: [PPA](https://launchpad.net/~russianneuromancer/+archive/ubuntu/drivers)
