@@ -28,6 +28,6 @@ A set of patches, kernel configs and various bits of information required to bui
 
 ## Kernel ##
 
-Kernel width applied patches at [GoogleDrive](https://drive.google.com/folderview?id=0BzIRxogf-cVkLWdiMTRoenU5amM&usp=sharing)
+Kernel with applied patches at [GoogleDrive](https://drive.google.com/folderview?id=0BzIRxogf-cVkLWdiMTRoenU5amM&usp=sharing)
 
 DKMS drivers: [PPA](https://launchpad.net/~russianneuromancer/+archive/ubuntu/drivers)
