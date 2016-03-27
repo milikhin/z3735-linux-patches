@@ -4,7 +4,7 @@ A set of patches, kernel configs and various bits of information required to bui
 
 ## Patches ##
 * *4.X-only* - kernel version-specific patches  
-   * ubuntu - Ubuntu packaging pathces
+   * ubuntu - Ubuntu packaging patches
 * *rtl8723bs* - patches required by WiFi driver
 * *rtl8723bs_bt* - patches required by BT driver
 * *undo* - patch for 4.5+, that should be reverted to get WiFi/BT working
