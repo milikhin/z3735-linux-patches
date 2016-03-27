@@ -14,7 +14,7 @@ A set of patches, kernel configs and various bits of information required to bui
 ## Drivers ##
 
 ### Bin ###
-PPA with drivers: [PPA@Launchpad](https://launchpad.net/~russianneuromancer/+archive/ubuntu/drivers)
+PPA with drivers: [ppa:russianneuromancer/drivers](https://launchpad.net/~russianneuromancer/+archive/ubuntu/drivers)
 
 ### Sources ###
 * Wi-Fi: [rtl8723bs](https://github.com/hadess/rtl8723bs)
