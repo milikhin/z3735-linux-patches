@@ -20,7 +20,7 @@ PPA with drivers: [ppa:russianneuromancer/drivers](https://launchpad.net/~russia
 * Wi-Fi: [rtl8723bs](https://github.com/hadess/rtl8723bs)
 * BT: [rtl8723bs_bt](https://github.com/lwfinger/rtl8723bs_bt)
 * Touch: [gslx680-acpi](https://github.com/onitake/gslx680-acpi)
-* Battery status: [axpd](https://github.com/Icenowy/axpd/)
+* Battery status: [axpd](https://github.com/Icenowy/axpd/), for 4.5+ get [fork-of-axpd](https://github.com/milikhin/axpd)
 
 ## Kernel ##
 
