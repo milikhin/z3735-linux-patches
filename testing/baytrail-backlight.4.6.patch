@@ -1,14 +1,14 @@
-diff -ur old/drivers/gpu/drm/i915/i915_drv.h linux-3.18.0-0.rc6.git0.1.1awb.x86_64/drivers/gpu/drm/i915/i915_drv.h
---- old/drivers/gpu/drm/i915/i915_drv.h	2014-11-24 16:07:51.597050369 -0800
-+++ linux-3.18.0-0.rc6.git0.1.1awb.x86_64/drivers/gpu/drm/i915/i915_drv.h	2014-11-24 16:08:28.199423974 -0800
-@@ -2223,6 +2223,7 @@
-	bool verbose_state_checks;
-	bool nuclear_pageflip;
-	int edp_vswing;
+diff -ur old/drivers/gpu/drm/i915/i915_params.h linux-3.18.0-0.rc6.git0.1.1awb.x86_64/drivers/gpu/drm/i915/i915_params.h
+--- old/drivers/gpu/drm/i915/i915_parrams.h	2014-11-24 16:07:51.597050369 -0800
++++ linux-3.18.0-0.rc6.git0.1.1awb.x86_64/drivers/gpu/drm/i915/i915_params.h	2014-11-24 16:08:28.199423974 -0800
+@@ -50,6 +50,7 @@
+ 	int mmio_debug;
+ 	int edp_vswing;
+ 	/* leave bools at the end to not create holes */
 +	bool force_backlight_pmic;
- };
- extern struct i915_params i915 __read_mostly;
- 
+ 	bool enable_hangcheck;
+ 	bool fastboot;
+ 	bool prefault_disable;
 diff -ur old/drivers/gpu/drm/i915/i915_params.c linux-3.18.0-0.rc6.git0.1.1awb.x86_64/drivers/gpu/drm/i915/i915_params.c
 --- old/drivers/gpu/drm/i915/i915_params.c	2014-11-24 16:07:51.590050297 -0800
 +++ linux-3.18.0-0.rc6.git0.1.1awb.x86_64/drivers/gpu/drm/i915/i915_params.c	2014-11-24 16:08:28.200423985 -0800
@@ -132,7 +132,7 @@ diff -ur old/drivers/gpu/drm/i915/intel_panel.c linux-3.18.0-0.rc6.git0.1.1awb.x
  	return 0;
  }
  
-+static int vlv_pmic_setup_backlight(struct intel_connector *connector)
++static int vlv_pmic_setup_backlight(struct intel_connector *connector, enum pipe unused)
 +{
 +	struct intel_panel *panel = &connector->panel;
 +
@@ -140,7 +140,7 @@ diff -ur old/drivers/gpu/drm/i915/intel_panel.c linux-3.18.0-0.rc6.git0.1.1awb.x
 +	panel->backlight.present = 1;
 +	panel->backlight.min = 0x00;
 +	panel->backlight.max = 0xFF;
-+	panel->backlight.level = 0x5A;
++	panel->backlight.level = 0x5A;			/* initial brightness (boot) */
 +	panel->backlight.enabled = 1;
 +
 +	return 0;
