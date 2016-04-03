@@ -1,6 +1,6 @@
 # z3735-linux-patches
 ## About ##
-A set of patches, kernel configs and various bits of information required to build working Linux kernel for Baytrail tablets (z3735) with RTL8723BS WiFi/BT and GSL1680 touchscreen
+A set of patches, kernel configs and various bits of information required to build working Linux kernel for Dexp Ursus 7W (and other similar Baytrail tablets with z3735 mainly) with RTL8723BS WiFi/BT and GSL1680 touchscreen
 
 ## Patches ##
 * *4.X-only* - kernel version-specific patches  
@@ -20,7 +20,9 @@ PPA with drivers: [ppa:russianneuromancer/drivers](https://launchpad.net/~russia
 * Wi-Fi: [rtl8723bs](https://github.com/hadess/rtl8723bs)
 * BT: [rtl8723bs_bt](https://github.com/lwfinger/rtl8723bs_bt)
 * Touch: [gslx680-acpi](https://github.com/onitake/gslx680-acpi)
-* Battery status: [axpd](https://github.com/Icenowy/axpd/)
+* Battery status:  
+   * 4.4: [axpd](https://github.com/Icenowy/axpd/)  
+   * 4.5+: [fork-of-axpd](https://github.com/milikhin/axpd)
 
 ## Kernel ##
 
