@@ -1,0 +1,209 @@
+From 2041c998d42d00619125ce027186e45d0c549e35 Mon Sep 17 00:00:00 2001
+From: Kernel Mainline Builds <kernel-ppa+gomeisa@canonical.com>
+Date: Sun, 15 May 2016 19:31:44 -0400
+Subject: [PATCH 4/4] configs (based on Ubuntu-4.6.0-5.6)
+
+---
+ debian.master/config/amd64/config.flavour.generic  |  1 -
+ .../config/amd64/config.flavour.lowlatency         |  1 -
+ debian.master/config/arm64/config.common.arm64     |  3 +--
+ debian.master/config/armhf/config.common.armhf     |  1 -
+ debian.master/config/config.common.ubuntu          | 28 +---------------------
+ debian.master/config/i386/config.flavour.generic   |  1 -
+ .../config/i386/config.flavour.lowlatency          |  1 -
+ debian.master/config/powerpc/config.common.powerpc |  1 -
+ debian.master/config/ppc64el/config.common.ppc64el |  1 -
+ 9 files changed, 2 insertions(+), 36 deletions(-)
+
+diff --git a/debian.master/config/amd64/config.flavour.generic b/debian.master/config/amd64/config.flavour.generic
+index 5c2e4e1..965113b 100644
+--- a/debian.master/config/amd64/config.flavour.generic
++++ b/debian.master/config/amd64/config.flavour.generic
+@@ -4,6 +4,5 @@
+ CONFIG_HZ=250
+ # CONFIG_HZ_1000 is not set
+ CONFIG_HZ_250=y
+-# CONFIG_IRQ_FORCED_THREADING_DEFAULT is not set
+ # CONFIG_PREEMPT is not set
+ CONFIG_PREEMPT_VOLUNTARY=y
+diff --git a/debian.master/config/amd64/config.flavour.lowlatency b/debian.master/config/amd64/config.flavour.lowlatency
+index 6b121e3..0af82e0 100644
+--- a/debian.master/config/amd64/config.flavour.lowlatency
++++ b/debian.master/config/amd64/config.flavour.lowlatency
+@@ -4,6 +4,5 @@
+ CONFIG_HZ=1000
+ CONFIG_HZ_1000=y
+ # CONFIG_HZ_250 is not set
+-CONFIG_IRQ_FORCED_THREADING_DEFAULT=y
+ CONFIG_PREEMPT=y
+ # CONFIG_PREEMPT_VOLUNTARY is not set
+diff --git a/debian.master/config/arm64/config.common.arm64 b/debian.master/config/arm64/config.common.arm64
+index 71e882d..3ea0973 100644
+--- a/debian.master/config/arm64/config.common.arm64
++++ b/debian.master/config/arm64/config.common.arm64
+@@ -114,7 +114,7 @@ CONFIG_FIREWIRE_NOSY=m
+ CONFIG_FIXED_PHY=y
+ CONFIG_FMC=m
+ # CONFIG_FONTS is not set
+-CONFIG_FORCE_MAX_ZONEORDER=13
++CONFIG_FORCE_MAX_ZONEORDER=11
+ CONFIG_FRAME_WARN=1024
+ CONFIG_FUSION=y
+ CONFIG_GAMEPORT=m
+@@ -163,7 +163,6 @@ CONFIG_IPMI_HANDLER=m
+ # CONFIG_IPMI_SI_PROBE_DEFAULTS is not set
+ CONFIG_IPX=m
+ # CONFIG_IP_DCCP_CCID3 is not set
+-# CONFIG_IRQ_FORCED_THREADING_DEFAULT is not set
+ CONFIG_JFS_FS=m
+ CONFIG_JME=m
+ CONFIG_JUMP_LABEL=y
+diff --git a/debian.master/config/armhf/config.common.armhf b/debian.master/config/armhf/config.common.armhf
+index aa04cbd..2b46789 100644
+--- a/debian.master/config/armhf/config.common.armhf
++++ b/debian.master/config/armhf/config.common.armhf
+@@ -152,7 +152,6 @@ CONFIG_IPMI_HANDLER=m
+ # CONFIG_IPMI_SI_PROBE_DEFAULTS is not set
+ CONFIG_IPX=m
+ # CONFIG_IP_DCCP_CCID3 is not set
+-# CONFIG_IRQ_FORCED_THREADING_DEFAULT is not set
+ CONFIG_JFS_FS=m
+ CONFIG_JME=m
+ # CONFIG_JUMP_LABEL is not set
+diff --git a/debian.master/config/config.common.ubuntu b/debian.master/config/config.common.ubuntu
+index 3ffa843..a30da0d 100644
+--- a/debian.master/config/config.common.ubuntu
++++ b/debian.master/config/config.common.ubuntu
+@@ -722,24 +722,6 @@ CONFIG_AUDIT_COMPAT_GENERIC=y
+ CONFIG_AUDIT_GENERIC=y
+ CONFIG_AUDIT_TREE=y
+ CONFIG_AUDIT_WATCH=y
+-CONFIG_AUFS_BDEV_LOOP=y
+-# CONFIG_AUFS_BRANCH_MAX_1023 is not set
+-CONFIG_AUFS_BRANCH_MAX_127=y
+-# CONFIG_AUFS_BRANCH_MAX_32767 is not set
+-# CONFIG_AUFS_BRANCH_MAX_511 is not set
+-# CONFIG_AUFS_BR_FUSE is not set
+-CONFIG_AUFS_BR_HFSPLUS=y
+-# CONFIG_AUFS_BR_RAMFS is not set
+-# CONFIG_AUFS_DEBUG is not set
+-CONFIG_AUFS_EXPORT=y
+-# CONFIG_AUFS_FHSM is not set
+-CONFIG_AUFS_FS=m
+-# CONFIG_AUFS_HNOTIFY is not set
+-CONFIG_AUFS_INO_T_64=y
+-# CONFIG_AUFS_RDU is not set
+-CONFIG_AUFS_SBILIST=y
+-# CONFIG_AUFS_SHWH is not set
+-CONFIG_AUFS_XATTR=y
+ CONFIG_AURORA_NB8800=m
+ CONFIG_AUTO_ZRELADDR=y
+ CONFIG_AX25=m
+@@ -2343,8 +2325,6 @@ CONFIG_EFI_PARTITION=y
+ # CONFIG_EFI_PGT_DUMP is not set
+ CONFIG_EFI_RUNTIME_MAP=y
+ CONFIG_EFI_RUNTIME_WRAPPERS=y
+-CONFIG_EFI_SECURE_BOOT_SIG_ENFORCE=y
+-CONFIG_EFI_SIGNATURE_LIST_PARSER=y
+ CONFIG_EFI_STUB=y
+ CONFIG_EFI_VARS=y
+ CONFIG_EFI_VARS_PSTORE=m
+@@ -4708,6 +4688,7 @@ CONFIG_MLX4_INFINIBAND=m
+ CONFIG_MLX5_CORE=m
+ CONFIG_MLX5_CORE_EN=y
+ CONFIG_MLX5_CORE_EN_DCB=y
++CONFIG_MLX5_CORE_EN_VXLAN=y
+ CONFIG_MLX5_INFINIBAND=m
+ CONFIG_MLX90614=m
+ CONFIG_MLXSW_CORE=m
+@@ -4794,7 +4775,6 @@ CONFIG_MODULE_SIG_KEY="certs/signing_key.pem"
+ # CONFIG_MODULE_SIG_SHA256 is not set
+ # CONFIG_MODULE_SIG_SHA384 is not set
+ CONFIG_MODULE_SIG_SHA512=y
+-CONFIG_MODULE_SIG_UEFI=y
+ CONFIG_MODULE_SRCVERSION_ALL=y
+ CONFIG_MODULE_UNLOAD=y
+ CONFIG_MODVERSIONS=y
+@@ -5649,7 +5629,6 @@ CONFIG_ORION_WATCHDOG=m
+ CONFIG_OUTER_CACHE=y
+ CONFIG_OUTER_CACHE_SYNC=y
+ CONFIG_OVERLAY_FS=m
+-# CONFIG_OVERLAY_FS_V1 is not set
+ # CONFIG_P1010_RDB is not set
+ # CONFIG_P1022_DS is not set
+ # CONFIG_P1022_RDK is not set
+@@ -6890,9 +6869,6 @@ CONFIG_SECURITYFS=y
+ CONFIG_SECURITY_APPARMOR=y
+ CONFIG_SECURITY_APPARMOR_BOOTPARAM_VALUE=1
+ CONFIG_SECURITY_APPARMOR_HASH=y
+-CONFIG_SECURITY_APPARMOR_HASH_DEFAULT=y
+-# CONFIG_SECURITY_APPARMOR_STATS is not set
+-CONFIG_SECURITY_APPARMOR_UNCONFINED_INIT=y
+ # CONFIG_SECURITY_DMESG_RESTRICT is not set
+ CONFIG_SECURITY_NETWORK=y
+ CONFIG_SECURITY_NETWORK_XFRM=y
+@@ -7922,7 +7898,6 @@ CONFIG_SYSFS=y
+ # CONFIG_SYSFS_DEPRECATED is not set
+ CONFIG_SYSFS_SYSCALL=y
+ CONFIG_SYSTEMPORT=m
+-CONFIG_SYSTEM_BLACKLIST_KEYRING=y
+ CONFIG_SYSTEM_DATA_VERIFICATION=y
+ CONFIG_SYSTEM_EXTRA_CERTIFICATE=y
+ CONFIG_SYSTEM_EXTRA_CERTIFICATE_SIZE=4096
+@@ -8773,7 +8748,6 @@ CONFIG_VCNL4000=m
+ CONFIG_VDSO=y
+ CONFIG_VDSO32=y
+ CONFIG_VECTORS_BASE=0xffff0000
+-CONFIG_VERSION_SIGNATURE=""
+ CONFIG_VETH=m
+ CONFIG_VEXPRESS_CONFIG=y
+ CONFIG_VEXPRESS_SYSCFG=y
+diff --git a/debian.master/config/i386/config.flavour.generic b/debian.master/config/i386/config.flavour.generic
+index 5c2e4e1..965113b 100644
+--- a/debian.master/config/i386/config.flavour.generic
++++ b/debian.master/config/i386/config.flavour.generic
+@@ -4,6 +4,5 @@
+ CONFIG_HZ=250
+ # CONFIG_HZ_1000 is not set
+ CONFIG_HZ_250=y
+-# CONFIG_IRQ_FORCED_THREADING_DEFAULT is not set
+ # CONFIG_PREEMPT is not set
+ CONFIG_PREEMPT_VOLUNTARY=y
+diff --git a/debian.master/config/i386/config.flavour.lowlatency b/debian.master/config/i386/config.flavour.lowlatency
+index 6b121e3..0af82e0 100644
+--- a/debian.master/config/i386/config.flavour.lowlatency
++++ b/debian.master/config/i386/config.flavour.lowlatency
+@@ -4,6 +4,5 @@
+ CONFIG_HZ=1000
+ CONFIG_HZ_1000=y
+ # CONFIG_HZ_250 is not set
+-CONFIG_IRQ_FORCED_THREADING_DEFAULT=y
+ CONFIG_PREEMPT=y
+ # CONFIG_PREEMPT_VOLUNTARY is not set
+diff --git a/debian.master/config/powerpc/config.common.powerpc b/debian.master/config/powerpc/config.common.powerpc
+index 3e51cd2..6def450 100644
+--- a/debian.master/config/powerpc/config.common.powerpc
++++ b/debian.master/config/powerpc/config.common.powerpc
+@@ -140,7 +140,6 @@ CONFIG_IPMI_SI_PROBE_DEFAULTS=y
+ CONFIG_IPX=m
+ # CONFIG_IP_DCCP_CCID3 is not set
+ # CONFIG_IRQ_ALL_CPUS is not set
+-# CONFIG_IRQ_FORCED_THREADING_DEFAULT is not set
+ # CONFIG_ISA is not set
+ CONFIG_JFS_FS=m
+ CONFIG_JME=m
+diff --git a/debian.master/config/ppc64el/config.common.ppc64el b/debian.master/config/ppc64el/config.common.ppc64el
+index 59ddd69..968a689 100644
+--- a/debian.master/config/ppc64el/config.common.ppc64el
++++ b/debian.master/config/ppc64el/config.common.ppc64el
+@@ -163,7 +163,6 @@ CONFIG_IPMI_SI_PROBE_DEFAULTS=y
+ CONFIG_IPX=m
+ # CONFIG_IP_DCCP_CCID3 is not set
+ CONFIG_IRQ_ALL_CPUS=y
+-# CONFIG_IRQ_FORCED_THREADING_DEFAULT is not set
+ CONFIG_JFS_FS=m
+ CONFIG_JME=m
+ CONFIG_JUMP_LABEL=y
+-- 
+2.7.4
+

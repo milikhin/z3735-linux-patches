@@ -1,0 +1,38 @@
+diff --git a/arch/x86/kernel/early-quirks.c b/arch/x86/kernel/early-quirks.c
+index bca14c8..152d0b1 100644
+--- a/arch/x86/kernel/early-quirks.c
++++ b/arch/x86/kernel/early-quirks.c
+@@ -585,8 +585,9 @@ static void __init intel_graphics_stolen(int num, int slot, int func)
+ static void __init force_disable_hpet(int num, int slot, int func)
+ {
+ #ifdef CONFIG_HPET_TIMER
+-	boot_hpet_disable = true;
+-	pr_info("x86/hpet: Will disable the HPET for this platform because it's not reliable\n");
++/*	boot_hpet_disable = true;
++	pr_info("x86/hpet: Will disable the HPET for this platform because it's not reliable\n");*/
++	pr_info("x86/hpet: WARNING: HPET was deemed unstable on this platform but hacked out to experiment with.\n");
+ #endif
+ }
+ 
+diff --git a/drivers/char/hpet.c b/drivers/char/hpet.c
+index be54e53..c305eba 100644
+--- a/drivers/char/hpet.c
++++ b/drivers/char/hpet.c
+@@ -885,10 +885,13 @@ int hpet_alloc(struct hpet_data *hdp)
+ 	ntimer = ((cap & HPET_NUM_TIM_CAP_MASK) >> HPET_NUM_TIM_CAP_SHIFT) + 1;
+ 
+ 	if (hpetp->hp_ntimer != ntimer) {
+-		printk(KERN_WARNING "hpet: number irqs doesn't agree"
+-		       " with number of timers\n");
+-		kfree(hpetp);
+-		return -ENODEV;
++		//printk(KERN_WARNING "hpet: number irqs doesn't agree"
++		//       " with number of timers\n");
++		//kfree(hpetp);
++		//return -ENODEV;
++		printk(KERN_WARNING "hpet: number irqs (%d) doesn’t agree"
++ 			"with number of timers (%d)\n", hpetp->hp_ntimer, ntimer);
++		printk(KERN_WARNING "Dangerously Ignoring :-)\n");
+ 	}
+ 
+ 	if (last)

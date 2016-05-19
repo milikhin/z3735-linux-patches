@@ -1,0 +1,96 @@
+From 555e001cca2ec4805002ccd030733ecef52f12c2 Mon Sep 17 00:00:00 2001
+From: Steve Beattie <steve.beattie@canonical.com>
+Date: Thu, 28 Apr 2016 23:33:25 -0700
+Subject: [PATCH 2/4] disable -pie when gcc has it enabled by default
+
+In Ubuntu 16.10, gcc's defaults have been set to build Position
+Independent Executables (PIE) on amd64 and ppc64le (gcc was configured
+this way for s390x in Ubuntu 16.04 LTS). This breaks the kernel build on
+amd64. The following patch disables pie for x86 builds (though not yet
+verified to work with gcc configured to build PIE by default i386 --
+we're not planning to enable it for that architecture).
+
+The intent is for this patch to go upstream after expanding it to
+additional architectures where needed, but I wanted to ensure that
+we could build 16.10 kernels first. I've successfully built kernels
+and booted them with this patch applied using the 16.10 compiler.
+
+Patch is against yakkety.git, but also applies with minor movement
+(no fuzz) against current linus.git.
+
+Signed-off-by: Steve Beattie <steve.beattie@canonical.com>
+Signed-off-by: Andy Whitcroft <apw@canonical.com>
+---
+ Makefile                     | 5 +++++
+ arch/x86/Makefile            | 3 ++-
+ arch/x86/entry/vdso/Makefile | 3 +++
+ 3 files changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 0f9cb36..9364354 100644
+--- a/Makefile
++++ b/Makefile
+@@ -637,6 +637,11 @@ ifneq ($(CONFIG_FRAME_WARN),0)
+ KBUILD_CFLAGS += $(call cc-option,-Wframe-larger-than=${CONFIG_FRAME_WARN})
+ endif
+ 
++# force no-pie for distro compilers that enable pie by default
++KBUILD_CFLAGS += $(call cc-option, -fno-pie)
++KBUILD_CFLAGS += $(call cc-option, -no-pie)
++KBUILD_AFLAGS += $(call cc-option, -fno-pie)
++
+ # Handle stack protector mode.
+ #
+ # Since kbuild can potentially perform two passes (first with the old
+diff --git a/arch/x86/Makefile b/arch/x86/Makefile
+index 4086abc..84d1cc8 100644
+--- a/arch/x86/Makefile
++++ b/arch/x86/Makefile
+@@ -27,6 +27,7 @@ REALMODE_CFLAGS	:= $(M16_CFLAGS) -g -Os -D__KERNEL__ \
+ 		   -mno-mmx -mno-sse \
+ 		   $(call cc-option, -ffreestanding) \
+ 		   $(call cc-option, -fno-stack-protector) \
++		   $(call cc-option, -fno-pie) \
+ 		   $(call cc-option, -mpreferred-stack-boundary=2)
+ export REALMODE_CFLAGS
+ 
+@@ -129,7 +130,7 @@ endif
+ # Make sure compiler does not have buggy stack-protector support.
+ ifdef CONFIG_CC_STACKPROTECTOR
+ 	cc_has_sp := $(srctree)/scripts/gcc-x86_$(BITS)-has-stack-protector.sh
+-        ifneq ($(shell $(CONFIG_SHELL) $(cc_has_sp) $(CC) $(KBUILD_CPPFLAGS) $(biarch)),y)
++        ifneq ($(shell $(CONFIG_SHELL) $(cc_has_sp) $(CC) -fno-pie $(KBUILD_CPPFLAGS) $(biarch)),y)
+                 $(warning stack-protector enabled but compiler support broken)
+         endif
+ endif
+diff --git a/arch/x86/entry/vdso/Makefile b/arch/x86/entry/vdso/Makefile
+index 6874da5..341f224 100644
+--- a/arch/x86/entry/vdso/Makefile
++++ b/arch/x86/entry/vdso/Makefile
+@@ -50,6 +50,7 @@ export CPPFLAGS_vdso.lds += -P -C
+ VDSO_LDFLAGS_vdso.lds = -m64 -Wl,-soname=linux-vdso.so.1 \
+ 			-Wl,--no-undefined \
+ 			-Wl,-z,max-page-size=4096 -Wl,-z,common-page-size=4096 \
++			$(call ld-option, -no-pie) \
+ 			$(DISABLE_LTO)
+ 
+ $(obj)/vdso64.so.dbg: $(src)/vdso.lds $(vobjs) FORCE
+@@ -73,6 +74,7 @@ $(obj)/vdso-image-%.c: $(obj)/vdso%.so.dbg $(obj)/vdso%.so $(obj)/vdso2c FORCE
+ CFL := $(PROFILING) -mcmodel=small -fPIC -O2 -fasynchronous-unwind-tables -m64 \
+        $(filter -g%,$(KBUILD_CFLAGS)) $(call cc-option, -fno-stack-protector) \
+        -fno-omit-frame-pointer -foptimize-sibling-calls \
++       $(call cc-option, -fno-pie) \
+        -DDISABLE_BRANCH_PROFILING -DBUILD_VDSO
+ 
+ $(vobjs): KBUILD_CFLAGS += $(CFL)
+@@ -146,6 +148,7 @@ KBUILD_CFLAGS_32 := $(filter-out -mcmodel=kernel,$(KBUILD_CFLAGS_32))
+ KBUILD_CFLAGS_32 := $(filter-out -fno-pic,$(KBUILD_CFLAGS_32))
+ KBUILD_CFLAGS_32 := $(filter-out -mfentry,$(KBUILD_CFLAGS_32))
+ KBUILD_CFLAGS_32 += -m32 -msoft-float -mregparm=0 -fpic
++KBUILD_CFLAGS_32 += $(call cc-option, -no-pie)
+ KBUILD_CFLAGS_32 += $(call cc-option, -fno-stack-protector)
+ KBUILD_CFLAGS_32 += $(call cc-option, -foptimize-sibling-calls)
+ KBUILD_CFLAGS_32 += -fno-omit-frame-pointer
+-- 
+2.7.4
+
