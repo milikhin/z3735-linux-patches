@@ -30,4 +30,4 @@ PPA with drivers: [ppa:russianneuromancer/drivers](https://launchpad.net/~russia
 
 ## Kernel ##
 
-Kernel with applied patches at [GoogleDrive](https://drive.google.com/folderview?id=0BzIRxogf-cVkLWdiMTRoenU5amM&usp=sharing)
+You can find deb packages for Ubuntu's 4.4.0-2 & mainline 4.6.0 with applied patches at [GoogleDrive](https://drive.google.com/folderview?id=0BzIRxogf-cVkLWdiMTRoenU5amM&usp=sharing)
